@@ -1,0 +1,465 @@
+/* 
+   Plumbsmart Plumbers - Elite Edition
+   Design System: 10 Billion Dollar Look
+*/
+
+:root {
+    --primary: #010B14;
+    --secondary: #0A2540;
+    --accent: #00E676;
+    --accent-glow: rgba(0, 230, 118, 0.4);
+    --silk-white: #F8FAFC;
+    --frosted: rgba(255, 255, 255, 0.03);
+    --frosted-border: rgba(255, 255, 255, 0.1);
+    --text-main: #FFFFFF;
+    --text-muted: #94A3B8;
+    --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--primary);
+    color: var(--text-main);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 var(--accent-glow); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(0, 230, 118, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 230, 118, 0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: var(--transition);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1.5rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transition);
+}
+
+nav.scrolled {
+    background: rgba(1, 11, 20, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--frosted-border);
+    padding: 1rem 5%;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-main);
+    text-decoration: none;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-links a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    opacity: 1;
+    color: var(--accent);
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+    background-image: linear-gradient(to right, rgba(1, 11, 20, 0.9) 30%, transparent), url('hero.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content {
+    max-width: 700px;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    animation: fadeIn 1s forwards;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+    animation: fadeIn 1s 0.2s forwards;
+    opacity: 0;
+}
+
+.cta-group {
+    display: flex;
+    gap: 1.5rem;
+    animation: fadeIn 1s 0.4s forwards;
+    opacity: 0;
+}
+
+.btn {
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-primary {
+    background-color: var(--accent);
+    color: var(--primary);
+    animation: pulse 2s infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+    transform: rotate(45deg);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
+}
+
+.btn-secondary {
+    background: var(--frosted);
+    color: var(--text-main);
+    border: 1px solid var(--frosted-border);
+    backdrop-filter: blur(10px);
+}
+
+.btn:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 230, 118, 0.3);
+}
+
+/* Trust Section */
+.trust-bar {
+    background: var(--secondary);
+    padding: 3rem 10%;
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--frosted-border);
+}
+
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.trust-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--frosted);
+    border: 1px solid var(--frosted-border);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+}
+
+.trust-text h4 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Services Grid */
+.services {
+    padding: 10rem 10%;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.section-header h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.section-header p {
+    color: var(--text-muted);
+}
+
+/* Review Cards Elite */
+.review-card {
+    background: var(--frosted);
+    border: 1px solid var(--frosted-border);
+    padding: 3rem;
+    border-radius: 32px;
+    transition: var(--transition);
+    backdrop-filter: blur(15px);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.review-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--accent);
+    transform: translateY(-5px);
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.review-avatar {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    border: 1px solid var(--frosted-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.stars {
+    color: #FFD700;
+    display: flex;
+    gap: 2px;
+    margin-bottom: 0.5rem;
+}
+
+.review-body {
+    font-style: italic;
+    color: var(--text-main);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.review-footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reviewer-info h4 {
+    font-size: 1rem;
+    color: var(--text-main);
+}
+
+.reviewer-info span {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.verified-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: rgba(0, 230, 118, 0.1);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.service-card {
+    background: var(--frosted);
+    border: 1px solid var(--frosted-border);
+    border-radius: 24px;
+    height: 450px;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.service-card .card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: var(--transition);
+    z-index: 1;
+}
+
+.service-card .card-content {
+    position: relative;
+    z-index: 2;
+    padding: 2.5rem;
+    background: linear-gradient(to top, rgba(1, 11, 20, 0.95) 40%, transparent);
+    width: 100%;
+    transition: var(--transition);
+}
+
+.service-card:hover .card-bg {
+    transform: scale(1.1);
+}
+
+.service-card:hover .card-content {
+    padding-bottom: 3.5rem;
+}
+
+.service-card i {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: block;
+    opacity: 0.8;
+}
+
+.service-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+    color: #FFF;
+}
+
+.service-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Urgency CTA */
+.urgency {
+    margin: 5rem 10%;
+    padding: 6rem;
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    border-radius: 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--frosted-border);
+}
+
+.urgency h2 {
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Footer style */
+footer {
+    padding: 5rem 10% 2rem;
+    background: var(--primary);
+    border-top: 1px solid var(--frosted-border);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 4rem;
+    margin-bottom: 3rem;
+}
+
+.footer-section h4 {
+    margin-bottom: 1.5rem;
+    color: var(--accent);
+}
+
+.footer-section p, .footer-section a {
+    color: var(--text-muted);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.8rem;
+    font-size: 0.9rem;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2rem;
+    border-top: 1px solid var(--frosted-border);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero { padding: 0 5%; text-align: center; justify-content: center; }
+    .hero h1 { font-size: 3rem; }
+    .cta-group { flex-direction: column; width: 100%; }
+    .urgency { padding: 3rem 1.5rem; }
+}
