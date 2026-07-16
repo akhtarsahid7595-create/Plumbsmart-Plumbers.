@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Plumbsmart Plumbers — Get a Free Quote</title>
+    <meta name="description" content="Contact Plumbsmart Plumbers for a free quote or 24/7 emergency callout across Johannesburg, Pretoria and Gauteng. Call, WhatsApp or fill in our form.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="style.css?v=4">
+
+    <style>
+        /* ---- Contact Page Specific ---- */
+        .contact-hero {
+            background: var(--navy);
+            padding: 56px 0 48px;
+            border-bottom: 4px solid var(--red);
+        }
+
+        .contact-hero h1 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+
+        .contact-hero p {
+            color: rgba(255,255,255,0.75);
+            font-size: 1rem;
+            max-width: 540px;
+        }
+
+        .contact-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-head);
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 20px;
+        }
+
+        .contact-breadcrumb a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+        }
+        .contact-breadcrumb a:hover { color: var(--white); }
+        .contact-breadcrumb span { color: rgba(255,255,255,0.35); }
+
+        /* Quick contact cards */
+        .quick-contact {
+            background: var(--off-white);
+            padding: 48px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .quick-contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .quick-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: var(--transition);
+        }
+
+        .quick-card:hover {
+            border-color: var(--navy);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+        }
+
+        .quick-card-icon {
+            width: 52px;
+            height: 52px;
+            background: var(--navy);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .quick-card-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--white);
+        }
+
+        .quick-card-icon.red { background: var(--red); }
+        .quick-card-icon.green { background: #16a34a; }
+
+        .quick-card-body strong {
+            display: block;
+            font-family: var(--font-head);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .quick-card-body a,
+        .quick-card-body span {
+            font-family: var(--font-head);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--navy);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .quick-card-body a:hover { color: var(--red); }
+
+        /* Main contact layout */
+        .contact-main {
+            padding: 72px 0;
+            background: var(--white);
+        }
+
+        .contact-main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.6fr;
+            gap: 56px;
+            align-items: start;
+        }
+
+        /* Info column */
+        .contact-info-col .section-title {
+            margin-bottom: 12px;
+        }
+
+        .contact-info-col .section-body {
+            margin-bottom: 32px;
+        }
+
+        .info-block {
+            border-top: 1px solid var(--border);
+            padding: 20px 0;
+        }
+
+        .info-block:last-child {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .info-block-label {
+            font-family: var(--font-head);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .info-block-value {
+            font-family: var(--font-head);
+            font-size: 0.98rem;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .info-block-value a {
+            color: var(--navy);
+            text-decoration: none;
+        }
+
+        .info-block-value a:hover { color: var(--red); }
+
+        /* Form column */
+        .contact-form-wrap {
+            background: var(--off-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+        }
+
+        .form-heading {
+            font-family: var(--font-head);
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 6px;
+        }
+
+        .form-subheading {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+        }
+
+        /* Map placeholder */
+        .map-section {
+            padding: 0 0 72px;
+            background: var(--white);
+        }
+
+        .map-wrap {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            height: 360px;
+            background: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
+            color: var(--text-muted);
+        }
+
+        .map-wrap svg {
+            width: 40px;
+            height: 40px;
+            color: var(--navy);
+            opacity: 0.3;
+        }
+
+        .map-wrap p {
+            font-family: var(--font-head);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 900px) {
+            .quick-contact-grid { grid-template-columns: 1fr; }
+            .contact-main-grid { grid-template-columns: 1fr; gap: 36px; }
+            .contact-form-wrap { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== TOP BAR ===== -->
+<div class="top-bar">
+    <div class="container">
+        <div class="top-bar-left">
+            <span class="top-bar-badge">⚡ 24/7 Emergency Service</span>
+            <a href="tel:+27787378559">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.47 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.64a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                +27 78 737 8559
+            </a>
+            <a href="mailto:info@plumbsmart.co.za">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                info@plumbsmart.co.za
+            </a>
+        </div>
+        <div class="top-bar-right">
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Serving Johannesburg, Pretoria & Gauteng
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+    <div class="container">
+        <div class="header-inner">
+            <a href="index.html" class="site-logo" aria-label="Plumbsmart home">
+                <div class="logo-wordmark">
+                    <div class="logo-main">
+                        <span class="logo-plumb">plumb</span><span class="logo-smart">smart</span>
+                    </div>
+                    <div class="logo-sub">PLUMBERS</div>
+                </div>
+            </a>
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="index.html">Home</a>
+                <a href="index.html#services">Services</a>
+                <a href="index.html#about">About Us</a>
+                <a href="index.html#why-us">Why Us</a>
+                <a href="index.html#reviews">Reviews</a>
+                <a href="contact.html" style="color: var(--red);">Contact</a>
+            </nav>
+            <div class="header-cta">
+                <a href="tel:+27787378559" class="header-phone">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.47 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.64a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    +27 78 737 8559
+                </a>
+                <a href="tel:+27787378559" class="btn btn-primary">Call Now</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobile-nav">
+    <div class="mobile-nav-header">
+        <div class="logo-wordmark">
+            <div class="logo-main"><span class="logo-plumb">plumb</span><span class="logo-smart">smart</span></div>
+            <div class="logo-sub">PLUMBERS</div>
+        </div>
+        <button class="close-btn" id="close-nav" aria-label="Close menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+    </div>
+    <a href="index.html" onclick="closeMobileNav()">Home</a>
+    <a href="index.html#services" onclick="closeMobileNav()">Services</a>
+    <a href="index.html#about" onclick="closeMobileNav()">About Us</a>
+    <a href="index.html#reviews" onclick="closeMobileNav()">Reviews</a>
+    <a href="contact.html" onclick="closeMobileNav()">Contact</a>
+    <a href="tel:+27787378559" class="btn btn-primary">📞 Call +27 78 737 8559</a>
+</div>
+
+<!-- ===== CONTACT HERO ===== -->
+<div class="contact-hero">
+    <div class="container">
+        <div class="contact-breadcrumb">
+            <a href="index.html">Home</a>
+            <span>›</span>
+            <span>Contact Us</span>
+        </div>
+        <h1>Get in Touch with Plumbsmart</h1>
+        <p>Request a free quote, book a callout, or ask us anything. We respond fast — 24 hours a day, 7 days a week.</p>
+    </div>
+</div>
+
+<!-- ===== QUICK CONTACT CARDS ===== -->
+<div class="quick-contact">
+    <div class="container">
+        <div class="quick-contact-grid">
+            <a href="tel:+27787378559" class="quick-card">
+                <div class="quick-card-icon red">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.47 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.64a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <div class="quick-card-body">
+                    <strong>Call Us — 24/7</strong>
+                    <a href="tel:+27787378559">+27 78 737 8559</a>
+                </div>
+            </a>
+            <a href="https://wa.me/27787378559" class="quick-card">
+                <div class="quick-card-icon green">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </div>
+                <div class="quick-card-body">
+                    <strong>WhatsApp Us</strong>
+                    <a href="https://wa.me/27787378559">+27 78 737 8559</a>
+                </div>
+            </a>
+            <a href="mailto:info@plumbsmart.co.za" class="quick-card">
+                <div class="quick-card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div class="quick-card-body">
+                    <strong>Email Us</strong>
+                    <a href="mailto:info@plumbsmart.co.za">info@plumbsmart.co.za</a>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ===== MAIN CONTACT SECTION ===== -->
+<section class="contact-main">
+    <div class="container">
+        <div class="contact-main-grid">
+
+            <!-- Left: Info -->
+            <div class="contact-info-col">
+                <span class="section-label">Contact Details</span>
+                <h2 class="section-title">We'd Love to <span>Hear From You</span></h2>
+                <p class="section-body">Whether it's a dripping tap or a full burst pipe emergency, our team is ready to help. Fill in the form and we'll get back to you within minutes.</p>
+
+                <div class="info-block">
+                    <div class="info-block-label">Phone (24/7)</div>
+                    <div class="info-block-value"><a href="tel:+27787378559">+27 78 737 8559</a></div>
+                </div>
+                <div class="info-block">
+                    <div class="info-block-label">WhatsApp</div>
+                    <div class="info-block-value"><a href="https://wa.me/27787378559">+27 78 737 8559</a></div>
+                </div>
+                <div class="info-block">
+                    <div class="info-block-label">Email</div>
+                    <div class="info-block-value"><a href="mailto:info@plumbsmart.co.za">info@plumbsmart.co.za</a></div>
+                </div>
+                <div class="info-block">
+                    <div class="info-block-label">Operating Hours</div>
+                    <div class="info-block-value">24/7 — 365 Days a Year</div>
+                </div>
+                <div class="info-block">
+                    <div class="info-block-label">Service Areas</div>
+                    <div class="info-block-value">Johannesburg, Pretoria, Sandton, Midrand, Centurion, Fourways, Randburg & surrounding Gauteng areas</div>
+                </div>
+                <div class="info-block">
+                    <div class="info-block-label">Registration</div>
+                    <div class="info-block-value">PIRB Registered · Fully Insured</div>
+                </div>
+            </div>
+
+            <!-- Right: Form -->
+            <div class="contact-form-wrap">
+                <p class="form-heading">Request a Callout or Free Quote</p>
+                <p class="form-subheading">Fill in your details below and we'll contact you within minutes.</p>
+
+                <form id="contact-form" onsubmit="handleSubmit(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="first-name">First Name</label>
+                            <input type="text" id="first-name" name="first_name" placeholder="e.g. John" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last Name</label>
+                            <input type="text" id="last-name" name="last_name" placeholder="e.g. Smith" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+27 82 000 0000" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="area">Your Area</label>
+                            <input type="text" id="area" name="area" placeholder="e.g. Sandton">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Service Required *</label>
+                        <select id="service" name="service" required>
+                            <option value="" disabled selected>Select a service...</option>
+                            <option>Burst Pipe Repair</option>
+                            <option>Blocked Drain Cleaning</option>
+                            <option>Leak Detection</option>
+                            <option>Geyser Repair / Installation</option>
+                            <option>Gas Geyser Installation</option>
+                            <option>Toilet / Bathroom Repair</option>
+                            <option>Tap / Faucet Repair</option>
+                            <option>Bathroom Renovation</option>
+                            <option>Shower Installation</option>
+                            <option>Emergency Callout</option>
+                            <option>Other / General Plumbing</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="preferred-time">Preferred Time</label>
+                            <select id="preferred-time" name="preferred_time">
+                                <option value="" disabled selected>When suits you?</option>
+                                <option>As soon as possible</option>
+                                <option>Morning (8am – 12pm)</option>
+                                <option>Afternoon (12pm – 5pm)</option>
+                                <option>Evening (5pm – 8pm)</option>
+                                <option>Anytime</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="urgency">Urgency</label>
+                            <select id="urgency" name="urgency">
+                                <option value="" disabled selected>How urgent?</option>
+                                <option>Emergency — Right Now</option>
+                                <option>Today</option>
+                                <option>This Week</option>
+                                <option>Just Getting a Quote</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Describe the Problem</label>
+                        <textarea id="message" name="message" placeholder="Tell us what's happening — the more detail, the better we can help..." style="min-height: 130px;"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary form-submit" id="submit-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        Send My Request
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== MAP SECTION ===== -->
+<div class="map-section">
+    <div class="container">
+        <div class="map-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <p>Serving Johannesburg, Pretoria & Greater Gauteng</p>
+        </div>
+    </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo-wordmark logo-wordmark--footer">
+                    <div class="logo-main"><span class="logo-plumb">plumb</span><span class="logo-smart">smart</span></div>
+                    <div class="logo-sub logo-sub--footer">PLUMBERS</div>
+                </div>
+                <p>Licensed plumbers serving Johannesburg, Pretoria and the greater Gauteng area. Available 24 hours a day, every day of the year.</p>
+                <div class="footer-socials">
+                    <a href="#" class="social-link" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://wa.me/27787378559" class="social-link" aria-label="WhatsApp">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h5>Our Services</h5>
+                <a href="index.html#services">Burst Pipe Repairs</a>
+                <a href="index.html#services">Leak Detection</a>
+                <a href="index.html#services">Blocked Drain Cleaning</a>
+                <a href="index.html#services">Geyser Repair & Installation</a>
+                <a href="index.html#services">Gas Geyser Installation</a>
+            </div>
+            <div class="footer-col">
+                <h5>Quick Links</h5>
+                <a href="index.html">Home</a>
+                <a href="index.html#about">About Us</a>
+                <a href="index.html#reviews">Reviews</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h5>Contact</h5>
+                <a href="tel:+27787378559" class="footer-phone">+27 78 737 8559</a>
+                <a href="mailto:info@plumbsmart.co.za">info@plumbsmart.co.za</a>
+                <span style="margin-top: 12px; line-height: 1.6;">Available 24/7<br>No after-hours fees</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Plumbsmart Plumbers. All Rights Reserved. | PIRB Registered · Fully Insured</p>
+            <p>Johannesburg & Pretoria, South Africa</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/27787378559" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+</a>
+
+<script src="script.js"></script>
+</body>
+</html>
